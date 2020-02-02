@@ -13,3 +13,7 @@ class Game extends Phaser.Game {
 }
 
 window.game = new Game();
+
+window.onresize = () => {
+  window.game.scale.resize(window.innerWidth, window.innerHeight);
+};
