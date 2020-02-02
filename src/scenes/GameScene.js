@@ -1,25 +1,28 @@
 import Phaser from "phaser";
-import logoImg from "../assets/logo.png";
 
 export default class GameScene extends Phaser.Scene {
   constructor(key) {
     super(key);
   }
 
-  preload() {
-    this.load.image("logo", logoImg);
-  }
+  preload() {}
 
   create() {
-    const logo = this.add.image(400, 150, "logo");
+    this.createMap();
+  }
 
-    this.tweens.add({
-      targets: logo,
-      y: 450,
-      duration: 2000,
-      ease: "Power2",
-      yoyo: true,
-      loop: -1
-    });
+  createMap() {
+    // create the tilemap
+    this.map = this.make.tilemap({ key: "level1" });
+    // add tilest image
+    this.tiles = this.map.addTilesetImage("RPGpack_sheet");
+    // create our layers
+    this.backgroundLayer = this.map.createStaticLayer(
+      "Background",
+      this.tiles,
+      0,
+      0
+    );
+    this.blockedLayer = this.map.createStaticLayer("Blocked", this.tiles, 0, 0);
   }
 }
