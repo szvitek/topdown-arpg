@@ -18,6 +18,16 @@ export default class BootScene extends Phaser.Scene {
         frameHeight: 64
       }
     );
+
+    // laad in character spritesheet
+    this.load.spritesheet(
+      "characters",
+      "src/assets/images/roguelikeChar_transparent.png",
+      {
+        frameWidth: 17,
+        frameHeight: 17
+      }
+    );
   }
 
   create() {
