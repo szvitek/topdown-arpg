@@ -6,8 +6,13 @@ export default class BootScene extends Phaser.Scene {
   }
 
   preload() {
+    this.levels = {
+      1: "level1",
+      2: "level2"
+    };
     // load the tilemap
     this.load.tilemapTiledJSON("level1", "src/assets/tilemaps/level1.json");
+    this.load.tilemapTiledJSON("level2", "src/assets/tilemaps/level2.json");
 
     // laad spritesheets
     this.load.spritesheet(
@@ -28,9 +33,12 @@ export default class BootScene extends Phaser.Scene {
         frameHeight: 17
       }
     );
+
+    // laad in protal sprite
+    this.load.image("portal", "src/assets/images/raft.png");
   }
 
   create() {
-    this.scene.start("Game");
+    this.scene.start("Game", { level: 1, newGame: true, levels: this.levels });
   }
 }

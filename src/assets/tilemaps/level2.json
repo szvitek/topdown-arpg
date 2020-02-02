@@ -163,7 +163,7 @@
                  "name":"StartingPosition",
                  "point":true,
                  "rotation":0,
-                 "type":"StartingPosition",
+                 "type":"StartingPositionPortal",
                  "visible":true,
                  "width":0,
                  "x":1275.76,
