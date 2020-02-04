@@ -36,6 +36,9 @@ export default class BootScene extends Phaser.Scene {
 
     // laad in protal sprite
     this.load.image("portal", "src/assets/images/raft.png");
+
+    // coin
+    this.load.image("coin", "src/assets/images/coin.png");
   }
 
   create() {

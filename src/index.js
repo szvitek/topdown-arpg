@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import config from "./config";
 import BootScene from "./scenes/BootScene";
+import UIScene from "./scenes/UIScene";
 import GameScene from "./scenes/GameScene";
 
 class Game extends Phaser.Game {
@@ -8,6 +9,7 @@ class Game extends Phaser.Game {
     super(config);
     this.scene.add("Boot", BootScene);
     this.scene.add("Game", GameScene);
+    this.scene.add("UI", UIScene);
     this.scene.start("Boot");
   }
 }
