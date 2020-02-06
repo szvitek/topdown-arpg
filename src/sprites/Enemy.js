@@ -4,6 +4,8 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, frame) {
     super(scene, x, y, "characters", frame);
 
+    this.health = 3;
+
     // enable physics
     this.scene.physics.world.enable(this);
 
@@ -14,11 +16,28 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.setScale(3);
 
     // move our enemy
-    this.scene.time.addEvent({
+    this.moveEvent = this.scene.time.addEvent({
       delay: 3000,
       callback: () => this.move(),
       loop: true
     });
+  }
+
+  loseHealth() {
+    this.health--;
+    this.tint = 0xff0000;
+    if (this.health === 0) {
+      this.moveEvent.destroy();
+      this.stopEvent.destroy();
+      this.destroy();
+    } else {
+      this.scene.time.addEvent({
+        delay: 200,
+        callback: () => {
+          this.tint = 0xffffff;
+        }
+      });
+    }
   }
 
   move() {
@@ -46,7 +65,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     }
 
     // move our enemy
-    this.scene.time.addEvent({
+    this.stopEvent = this.scene.time.addEvent({
       delay: 500,
       callback: () => this.setVelocity(0)
     });
